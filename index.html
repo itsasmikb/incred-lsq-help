@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>InCred LeadSquared Help</title>
+<style>
+:root{
+  --bg:#f2f4f8; --surface:#ffffff; --ink:#132039; --muted:#5a6579; --line:#dce1ea;
+  --brand:#c2410c; --brand-ink:#ffffff; --brand-soft:#fff1e6; --you:#fde3cf; --you-ink:#132039; --warn:#b42318;
+  color-scheme:light; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0d1525; --surface:#152038; --ink:#e6ebf5; --muted:#9aa6bd; --line:#283656;
+  --brand:#fb923c; --brand-ink:#1a0e05; --brand-soft:#3a2414; --you:#5a3216; --you-ink:#fff4ea; --warn:#f97066; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#0d1525; --surface:#152038; --ink:#e6ebf5; --muted:#9aa6bd; --line:#283656;
+  --brand:#fb923c; --brand-ink:#1a0e05; --brand-soft:#3a2414; --you:#5a3216; --you-ink:#fff4ea; --warn:#f97066; color-scheme:dark;}
+*,*::before,*::after{box-sizing:inherit}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:16px/1.55 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+button{font:inherit;color:inherit}
+.app{display:flex;flex-direction:column;height:100%;max-width:880px;margin:0 auto}
+header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 18px;background:var(--surface);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px;margin-right:auto}
+.mark{width:34px;height:34px;border-radius:8px;background:var(--brand);color:var(--brand-ink);display:grid;place-items:center;font-weight:600;font-size:.95rem}
+.brand b{display:block;font-weight:600;line-height:1.2}
+.brand span{display:block;font-size:.8rem;color:var(--muted)}
+.mode{display:flex;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:3px}
+.mode button{border:0;background:transparent;padding:7px 14px;border-radius:999px;font-size:.9rem;cursor:pointer;color:var(--muted)}
+.mode button[aria-pressed="true"]{background:var(--brand);color:var(--brand-ink)}
+.icon-btn{border:1px solid var(--line);background:transparent;border-radius:999px;padding:7px 14px;font-size:.9rem;cursor:pointer}
+#chat{flex:1;overflow:auto;padding:22px 18px 10px}
+.hello h2{font-size:1.35rem;font-weight:600;margin:6px 0 4px}
+.hello p{margin:0 0 18px;color:var(--muted)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
+.tile{border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:16px 14px;text-align:left;cursor:pointer;min-height:84px}
+.tile b{display:block;font-weight:600;margin-bottom:3px}
+.tile span{font-size:.86rem;color:var(--muted)}
+.tile{border-left:4px solid var(--brand)}
+.tile:hover{border-color:var(--brand);background:var(--brand-soft)}
+.msg{margin:0 0 16px;max-width:92%}
+.msg.you{margin-left:auto;width:fit-content;background:var(--you);color:var(--you-ink);padding:10px 14px;border-radius:14px 14px 4px 14px}
+.msg.bot{background:var(--surface);border:1px solid var(--line);padding:14px 16px;border-radius:4px 14px 14px 14px}
+.msg.bot p{margin:0 0 .6em}.msg.bot p:last-child{margin-bottom:0}
+.msg.bot ol,.msg.bot ul{margin:.2em 0 .7em;padding-left:1.35em}.msg.bot li{margin:.2em 0}
+.msg.err{border-color:var(--warn);color:var(--warn)}
+.thinking{color:var(--muted)}
+figure{margin:12px 0 4px}
+figure img{display:block;max-width:100%;border:1px solid var(--line);border-radius:8px;cursor:zoom-in}
+figcaption{font-size:.82rem;color:var(--muted);margin-top:5px}
+.quick{display:none;gap:8px;overflow-x:auto;padding:8px 18px 0;background:var(--bg)}
+.quick.on{display:flex}
+.quick button{flex:none;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 13px;font-size:.88rem;cursor:pointer;white-space:nowrap}
+form{display:flex;gap:8px;padding:10px 18px 16px;background:var(--bg)}
+textarea{flex:1;resize:none;border:1px solid var(--line);border-radius:12px;padding:12px 14px;font:inherit;color:var(--ink);background:var(--surface);min-height:50px;max-height:160px}
+.send{border:0;border-radius:12px;padding:0 20px;font-weight:600;cursor:pointer;background:var(--brand);color:var(--brand-ink)}
+:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.sheet{position:fixed;inset:0;background:rgba(10,16,30,.45);display:none;z-index:20}
+.sheet.on{display:block}
+.panel{position:absolute;right:0;top:0;bottom:0;width:min(520px,100%);background:var(--surface);overflow:auto;
+  padding:calc(18px + env(safe-area-inset-top,0px)) 20px calc(18px + env(safe-area-inset-bottom,0px))}
+.panel h3{margin:0 0 10px;font-size:1.1rem}
+.panel input{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit;margin-bottom:10px}
+.panel details{border-bottom:1px solid var(--line);padding:9px 0}
+.panel summary{cursor:pointer;font-weight:500}
+.panel .body{font-size:.88rem;white-space:pre-wrap;margin-top:6px}
+.close{float:right}
+.zoom{position:fixed;inset:0;background:rgba(5,8,15,.85);display:none;z-index:30;place-items:center;padding:16px;cursor:zoom-out}
+.zoom.on{display:grid}.zoom img{max-width:100%;max-height:100%;border-radius:6px}
+@media (max-width:560px){header{padding:12px 14px}.brand span{display:none}#chat{padding:16px 12px 8px}form{padding:8px 12px 12px}.quick{padding:8px 12px 0}.tiles{grid-template-columns:1fr 1fr}.tile{min-height:76px;padding:13px 12px}}
+.hit{border-top:1px solid var(--line);padding-top:10px;margin-top:10px}
+.hit:first-of-type{border-top:0;margin-top:4px;padding-top:0}
+.hit b{display:block;margin-bottom:4px}
+.hit .snip{font-size:.9rem;color:var(--muted);white-space:pre-line}
+.linkbtn{border:0;background:none;color:var(--brand);font-weight:600;padding:6px 0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.suggest{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.suggest button{border:1px solid var(--brand);background:var(--brand-soft);color:var(--ink);border-radius:999px;padding:6px 12px;cursor:pointer;font-size:.88rem}
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="brand"><div class="mark" aria-hidden="true">IC</div><div><b>InCred LeadSquared Help</b><span>Help from the team’s user manual</span></div></div>
+    <div class="mode" role="group" aria-label="I am a">
+      <button data-mode="rm" aria-pressed="true">Sales User</button>
+      <button data-mode="admin" aria-pressed="false">Admin</button>
+    </div>
+    <button class="icon-btn" id="openManual">Manual</button>
+  </header>
+  <div id="chat" aria-live="polite"></div>
+  <div class="quick" id="quick" aria-label="Quick help"></div>
+  <form id="form">
+    <textarea id="q" rows="1" placeholder="Type a question or a few words…" aria-label="Your question"></textarea>
+    <button type="submit" class="send" id="send">Ask</button>
+  </form>
+</div>
+<div class="sheet" id="sheet"><div class="panel" role="dialog" aria-label="Manual">
+  <button class="icon-btn close" id="closeManual">Close</button>
+  <h3>Manual</h3>
+  <input id="find" type="search" placeholder="Search the manual" aria-label="Search the manual">
+  <div id="manual"></div>
+</div></div>
+<div class="zoom" id="zoom"><img alt=""></div>
+<script>
+let KB='', IMGS={}, ANSWERS={rm:[],admin:[]}, SECTIONS=[];
+let apiOff=false;
+const $=s=>document.querySelector(s);
+const chat=$('#chat'), q=$('#q'), send=$('#send'), quick=$('#quick');
+let mode='rm', history=[], busy=false, ctl=null;
+try{const m=localStorage.getItem('lsqHelpMode'); if(m==='admin'||m==='rm') mode=m;}catch(e){}
+
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function fig(key){const i=IMGS[key]; if(!i) return ''; return `<figure><img src="${i.src}" alt="${esc(i.cap)}" loading="lazy"><figcaption>${esc(i.cap)}</figcaption></figure>`}
+function md(t){
+  let html='',list=null; const close=()=>{if(list){html+=`</${list}>`;list=null}};
+  for(const raw of t.split('\n')){
+    const s=raw.match(/^\s*\[screenshot:\s*([a-z_]+)\s*\]\s*$/i);
+    if(s){close(); html+=fig(s[1].toLowerCase()); continue;}
+    let l=esc(raw).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>'); let m;
+    if((m=l.match(/^\s*(\d+)[.)]\s+(.*)/))){if(list!=='ol'){close();html+=`<ol start="${m[1]}">`;list='ol'}html+=`<li>${m[2]}</li>`}
+    else if((m=l.match(/^\s*[-•*]\s+(.*)/))){if(list!=='ul'){close();html+='<ul>';list='ul'}html+=`<li>${m[1]}</li>`}
+    else if(!l.trim()) close();
+    else {close();html+=`<p>${l.replace(/^#+\s*/,'')}</p>`}
+  }
+  close(); return html;
+}
+function add(role,html){$('.hello')?.remove(); quick.classList.add('on');
+  const d=document.createElement('div'); d.className='msg '+role; d.innerHTML=html; chat.appendChild(d); d.scrollIntoView({block:'start'}); return d}
+
+function renderHome(){
+  chat.innerHTML=''; history=[]; quick.classList.remove('on');
+  const h=document.createElement('div'); h.className='hello';
+  h.innerHTML=`<h2>${mode==='rm'?'What do you need help with?':'What would you like to set up?'}</h2>
+  <p>${mode==='rm'?'Tap a topic, or type a question below.':'Settings help for Admins and Team Leads. Tap a topic, or type a question below.'}</p>`;
+  const g=document.createElement('div'); g.className='tiles';
+  for(const item of ANSWERS[mode]){const b=document.createElement('button');b.className='tile';b.innerHTML=`<b>${esc(item.title)}</b><span>${esc(item.sub)}</span>`;b.onclick=()=>showAnswer(item);g.appendChild(b)}
+  h.appendChild(g); chat.appendChild(h);
+  quick.innerHTML='';
+  const home=document.createElement('button'); home.textContent='All topics'; home.onclick=renderHome; quick.appendChild(home);
+  for(const item of ANSWERS[mode]){const b=document.createElement('button');b.textContent=item.title;b.onclick=()=>showAnswer(item);quick.appendChild(b)}
+}
+function setMode(m){ if(busy) return; mode=m; try{localStorage.setItem('lsqHelpMode',m)}catch(e){}
+  document.querySelectorAll('.mode button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.mode===m)); renderHome(); }
+document.querySelectorAll('.mode button').forEach(b=>b.onclick=()=>setMode(b.dataset.mode));
+
+function showAnswer(item){
+  add('you',esc(item.q)); add('bot',md(item.a));
+  history.push({role:'user',content:item.q},{role:'assistant',content:item.a});
+}
+
+// ---- Manual search (used when the AI chat isn't switched on) ----
+const STOP=new Set('a an the and or of to in on for is are am be do does did how what why when where which who can i my me we our you your it its this that with from at by as if not no yes should would could will get got about into there their them then than so any all please tell know want need help'.split(' '));
+const words=s=>s.toLowerCase().replace(/[^a-z0-9&\- ]+/g,' ').split(/\s+/).filter(w=>w.length>1&&!STOP.has(w));
+function stem(w){return w.replace(/(ings|ing|ed|es|s)$/,'')}
+function search(text){
+  const terms=[...new Set(words(text).map(stem))]; if(!terms.length) return [];
+  return SECTIONS.map((s,i)=>{
+    const title=s.title.toLowerCase(), body=s.body.toLowerCase(); let score=0, hitTerms=0;
+    for(const t of terms){ let hit=false;
+      if(title.includes(t)){score+=6;hit=true}
+      const n=body.split(t).length-1; if(n){score+=Math.min(n,6);hit=true}
+      if(hit) hitTerms++; }
+    score*=hitTerms/terms.length;
+    const adminSec=/^(10[.\s]|Automation|Configuration|Branch)/.test(s.title);
+    score*= (mode==='admin') ? (adminSec?1.4:1) : (adminSec?0.5:1);
+    return {i,score,terms};
+  }).filter(r=>r.score>0).sort((a,b)=>b.score-a.score).slice(0,3);
+}
+function snippet(sec,terms){
+  const lines=sec.body.split('\n').filter(l=>l.trim());
+  const hits=lines.filter(l=>terms.some(t=>l.toLowerCase().includes(t)));
+  return (hits.length?hits:lines).slice(0,3).map(l=>l.length>260?l.slice(0,257)+'…':l).join('\n');
+}
+function topicMatches(text){
+  const ts=words(text).map(stem);
+  return ANSWERS[mode].concat(ANSWERS[mode==='rm'?'admin':'rm']).map(a=>{
+    const hay=(a.title+' '+a.q+' '+a.sub).toLowerCase(); return {a,s:ts.filter(t=>hay.includes(t)).length};
+  }).filter(x=>x.s>0).sort((x,y)=>y.s-x.s).slice(0,2).map(x=>x.a);
+}
+function showSearch(text){
+  const res=search(text), topics=topicMatches(text);
+  if(!res.length && !topics.length){
+    add('bot','<p>I couldn’t find that in the manual. Try different words, tap a topic, or open the <strong>Manual</strong>. If it still isn’t there, ask your Team Lead or Admin.</p>');
+    return;
+  }
+  const d=add('bot', res.length?'<p>Here’s what the manual says about that:</p>':'');
+  for(const r of res){
+    const s=SECTIONS[r.i]; const div=document.createElement('div'); div.className='hit';
+    div.innerHTML=`<b>${esc(s.title)}</b><div class="snip">${esc(snippet(s,r.terms)).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')}</div>`;
+    const b=document.createElement('button'); b.className='linkbtn'; b.textContent='Read the full section'; b.onclick=()=>openManual(r.i);
+    div.appendChild(b); d.appendChild(div);
+  }
+  if(topics.length){
+    const w=document.createElement('div'); w.className='suggest';
+    w.innerHTML='<span class="thinking" style="width:100%">Quick answers that might help:</span>';
+    for(const a of topics){const b=document.createElement('button');b.textContent=a.title;b.onclick=()=>showAnswer(a);w.appendChild(b)}
+    d.appendChild(w);
+  }
+}
+
+// ---- Typed questions: AI chat if switched on, otherwise manual search ----
+const errCopy={rate_limited:'Too many questions at once. Wait a few seconds, then ask again.'};
+async function ask(text){
+  text=(text||'').trim(); if(!text||busy) return;
+  add('you',esc(text)); q.value=''; autosize();
+  if(apiOff){ showSearch(text); return; }
+  busy=true; send.textContent='Stop';
+  const out=add('bot','<span class="thinking">Checking the manual…</span>');
+  const messages=[...history.slice(-6),{role:'user',content:text}];
+  ctl=new AbortController();
+  try{
+    const r=await fetch('api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({mode,messages}),signal:ctl.signal});
+    const data=await r.json().catch(()=>({}));
+    if(r.status===404||r.status===405||data.error==='not_configured'){ apiOff=true; out.remove(); showSearch(text); return; }
+    if(!r.ok||!data.text) throw {code:data.error||'upstream'};
+    out.innerHTML=md(data.text);
+    history.push({role:'user',content:text},{role:'assistant',content:data.text});
+  }catch(e){
+    if(e&&e.name==='AbortError'){ out.innerHTML='<span class="thinking">Stopped.</span>'; }
+    else if(e&&e.code==='rate_limited'){ out.classList.add('err'); out.textContent=errCopy.rate_limited; }
+    else { out.remove(); showSearch(text); }
+  }finally{busy=false;send.textContent='Ask';ctl=null}
+}
+$('#form').addEventListener('submit',e=>{e.preventDefault(); if(busy&&ctl){ctl.abort();return} ask(q.value)});
+q.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();$('#form').requestSubmit()}});
+function autosize(){q.style.height='auto';q.style.height=Math.min(q.scrollHeight,160)+'px'}
+q.addEventListener('input',autosize);
+chat.addEventListener('click',e=>{const img=e.target.closest('figure img'); if(img){$('#zoom img').src=img.src;$('#zoom img').alt=img.alt;$('#zoom').classList.add('on')}});
+$('#zoom').onclick=()=>$('#zoom').classList.remove('on');
+
+// ---- Manual sheet ----
+function buildManual(){
+  SECTIONS=[]; const box=$('#manual'); box.innerHTML='';
+  for(const p of KB.split(/\n(?=#{2,5} )/)){const m=p.match(/^#{2,5} (.*)\n?([\s\S]*)/); if(!m) continue;
+    const i=SECTIONS.length; SECTIONS.push({title:m[1],body:m[2].trim()});
+    const d=document.createElement('details'),s=document.createElement('summary'),b=document.createElement('div');
+    d.id='sec-'+i; s.textContent=m[1]; b.className='body'; b.textContent=m[2].trim(); d.append(s,b); box.appendChild(d)}
+}
+function openManual(i){
+  $('#sheet').classList.add('on'); $('#find').value='';
+  document.querySelectorAll('#manual details').forEach(d=>{d.style.display='';d.open=false});
+  if(i!=null){const d=$('#sec-'+i); if(d){d.open=true; d.scrollIntoView({block:'start'})}} else $('#find').focus();
+}
+$('#openManual').onclick=()=>openManual(null);
+$('#closeManual').onclick=()=>$('#sheet').classList.remove('on');
+$('#sheet').addEventListener('click',e=>{if(e.target.id==='sheet')$('#sheet').classList.remove('on')});
+$('#find').addEventListener('input',e=>{const v=e.target.value.toLowerCase();
+  document.querySelectorAll('#manual details').forEach(d=>{const hit=!v||d.textContent.toLowerCase().includes(v); d.style.display=hit?'':'none'; d.open=!!v&&hit})});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){$('#sheet').classList.remove('on');$('#zoom').classList.remove('on')}});
+
+// ---- Load content ----
+Promise.all([fetch('answers.json').then(r=>r.json()),fetch('kb.md').then(r=>r.text()),fetch('screens.json').then(r=>r.json())])
+  .then(([a,k,s])=>{ANSWERS=a;KB=k;IMGS=s;buildManual();setMode(mode)})
+  .catch(()=>{chat.innerHTML='<div class="msg bot err">Couldn’t load the help content. Refresh the page to try again.</div>'});
+</script>
+</body>
+</html>

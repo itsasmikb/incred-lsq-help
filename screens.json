@@ -1,0 +1,206 @@
+{
+ "login_email": {
+  "src": "login_email.jpg",
+  "cap": "Login screen: enter your email, then Continue",
+  "mode": "rm",
+  "sec": "2"
+ },
+ "login_password": {
+  "src": "login_password.jpg",
+  "cap": "Login screen: enter your password, then Continue",
+  "mode": "rm",
+  "sec": "2"
+ },
+ "home_contacts": {
+  "src": "home_contacts.jpg",
+  "cap": "Manage Contacts, the page you land on after login",
+  "mode": "rm",
+  "sec": "2"
+ },
+ "home_icon": {
+  "src": "home_icon.jpg",
+  "cap": "Top menu: the Home icon opens your Dashboard",
+  "mode": "rm",
+  "sec": "8"
+ },
+ "smartviews_tabs": {
+  "src": "smartviews_tabs.jpg",
+  "cap": "Smart Views tabs, filters and lead list",
+  "mode": "rm",
+  "sec": "3"
+ },
+ "new_leads": {
+  "src": "new_leads.jpg",
+  "cap": "Smart Views: New Leads tab",
+  "mode": "rm",
+  "sec": "3"
+ },
+ "lead_detail": {
+  "src": "lead_detail.jpg",
+  "cap": "Lead Detail page: V-card on the left, Opportunity Details on the right",
+  "mode": "rm",
+  "sec": "4"
+ },
+ "activity_history": {
+  "src": "activity_history.jpg",
+  "cap": "Lead Detail: Activity History tab with call recordings",
+  "mode": "rm",
+  "sec": "4"
+ },
+ "tasks_tab": {
+  "src": "tasks_tab.jpg",
+  "cap": "Lead Detail: Tasks tab with Completed and Overdue flags",
+  "mode": "rm",
+  "sec": "4"
+ },
+ "mark_complete": {
+  "src": "mark_complete.jpg",
+  "cap": "Open a task to see Mark as Complete",
+  "mode": "rm",
+  "sec": "5"
+ },
+ "dispo_form": {
+  "src": "dispo_form.jpg",
+  "cap": "Call Disposition Form, before you fill it",
+  "mode": "rm",
+  "sec": "5"
+ },
+ "dispo_followup": {
+  "src": "dispo_followup.jpg",
+  "cap": "Call Disposition Form with Sub Disposition and Follow-up Date & Time",
+  "mode": "rm",
+  "sec": "5"
+ },
+ "dashboard": {
+  "src": "dashboard.jpg",
+  "cap": "Your User Dashboard: lead, task and call tiles",
+  "mode": "rm",
+  "sec": "8"
+ },
+ "dashboard_funnel": {
+  "src": "dashboard_funnel.jpg",
+  "cap": "Dashboard: Stage Wise Data Analysis funnel",
+  "mode": "rm",
+  "sec": "8"
+ },
+ "dashboard_tat": {
+  "src": "dashboard_tat.jpg",
+  "cap": "Dashboard: Users Phone Call Analysis and Funnel Stage TAT Analysis",
+  "mode": "rm",
+  "sec": "8"
+ },
+ "settings_profile": {
+  "src": "settings_profile.jpg",
+  "cap": "Settings → Profile → My Profile",
+  "mode": "admin",
+  "sec": "10.1"
+ },
+ "users_list": {
+  "src": "users_list.jpg",
+  "cap": "Settings → Users and Permissions → Users list",
+  "mode": "admin",
+  "sec": "10.2"
+ },
+ "create_user": {
+  "src": "create_user.jpg",
+  "cap": "Create user window",
+  "mode": "admin",
+  "sec": "10.2"
+ },
+ "edit_user": {
+  "src": "edit_user.jpg",
+  "cap": "Edit user window, Details tab",
+  "mode": "admin",
+  "sec": "10.2"
+ },
+ "teams": {
+  "src": "teams.jpg",
+  "cap": "Settings → Teams",
+  "mode": "admin",
+  "sec": "10.3"
+ },
+ "perm_template": {
+  "src": "perm_template.jpg",
+  "cap": "Permission template: Sales User Permissions",
+  "mode": "admin",
+  "sec": "10.4"
+ },
+ "perm_grid": {
+  "src": "perm_grid.jpg",
+  "cap": "Assign Permissions grid and colour legend",
+  "mode": "admin",
+  "sec": "10.4"
+ },
+ "perm_configure": {
+  "src": "perm_configure.jpg",
+  "cap": "Configure a partial permission (Restrict / ×)",
+  "mode": "admin",
+  "sec": "10.4"
+ },
+ "opp_types": {
+  "src": "opp_types.jpg",
+  "cap": "Settings → Opportunities → Opportunity Types",
+  "mode": "admin",
+  "sec": "10.5"
+ },
+ "opp_fields": {
+  "src": "opp_fields.jpg",
+  "cap": "Opportunity field list (part)",
+  "mode": "admin",
+  "sec": "10.6"
+ },
+ "dropdown_options": {
+  "src": "dropdown_options.jpg",
+  "cap": "Enter Dropdown Options window",
+  "mode": "admin",
+  "sec": "10.7"
+ },
+ "cfs_edit": {
+  "src": "cfs_edit.jpg",
+  "cap": "Edit Custom Field Set: Call Disposition Details",
+  "mode": "admin",
+  "sec": "10.6"
+ },
+ "status_config": {
+  "src": "status_config.jpg",
+  "cap": "Status Configuration: stages per status",
+  "mode": "admin",
+  "sec": "10.8"
+ },
+ "dup_detect": {
+  "src": "dup_detect.jpg",
+  "cap": "Duplicate Detection Rules for Opportunity",
+  "mode": "admin",
+  "sec": "10.9"
+ },
+ "sv_settings": {
+  "src": "sv_settings.jpg",
+  "cap": "Settings → Smart Views list",
+  "mode": "admin",
+  "sec": "10.10"
+ },
+ "sv_edit": {
+  "src": "sv_edit.jpg",
+  "cap": "Edit Smart View: tabs, filters and columns",
+  "mode": "admin",
+  "sec": "10.10"
+ },
+ "auto_opp_create": {
+  "src": "auto_opp_create.jpg",
+  "cap": "Automation 1: Opp create flow",
+  "mode": "admin",
+  "sec": "10.12"
+ },
+ "auto_stage_flow": {
+  "src": "auto_stage_flow.jpg",
+  "cap": "Stage Flow automation: working-hours and distribute paths",
+  "mode": "admin",
+  "sec": "10.12"
+ },
+ "nudge_dropoff": {
+  "src": "nudge_dropoff.jpg",
+  "cap": "Nudge Users: Drop Off Stage Notify",
+  "mode": "admin",
+  "sec": "10.12"
+ }
+}
